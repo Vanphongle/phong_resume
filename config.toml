@@ -52,7 +52,7 @@ weight = 1
 
 [[Menu.Main]]
 name = "Contact me."
-url = "mailto:mail@mail.com"
+url = "/contact/"
 weight = 2
 
 [taxonomies]
