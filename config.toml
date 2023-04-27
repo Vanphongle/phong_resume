@@ -7,7 +7,7 @@ ignoreErrors = ["error-remote-getjson"]
 [params]
 DateFormat = "January 2006"
 
-author = "John Doe"
+author = "Phong Le"
 description = "I'm an IT Analyst based i. I like developing and designing random stuffs."
 header = "<strong>Hi, I'm Phong. 👋 </strong>"
 keywords = [ "Portfolio", "developer", "coding", "maker"]
