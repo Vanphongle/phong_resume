@@ -8,8 +8,8 @@ ignoreErrors = ["error-remote-getjson"]
 DateFormat = "January 2006"
 
 author = "John Doe"
-description = "I'm a computer engineering student based in Modena, Italy. I like developing and designing random stuffs."
-header = "<strong>Hi, I'm John. 👋 </strong>"
+description = "I'm an IT Analyst based i. I like developing and designing random stuffs."
+header = "<strong>Hi, I'm Phong. 👋 </strong>"
 keywords = [ "Portfolio", "developer", "coding", "maker"]
 showHeaderOnHomepage = false
 #googleAnalytics = ""
@@ -24,28 +24,23 @@ text404 = "Since the page you were looking for seems like doesn't exist, we <str
 
 [[params.social]]
 name = "github"
-url = "https://github.com/example"
+url = "https://github.com/Vanphongle"
 icon = "fa fa-github"
 before = "Reach me on "
 
 [[params.social]]
-name = "twitter"
-url = "https://twitter.com/example"
-icon = "fa fa-twitter"
+name = "linkedin"
+url = "https://www.linkedin.com/in/van-p-le/"
+icon = "fa fa-linkedin"
 before = "and "
 
 [[params.social]]
 name = "email"
 icon = "fa fa-envelope"
-url = "mailto:hi@john.com"
+url = "vanp.le@outlook.com"
 before = ", or drop me a line on"
-
-[[params.social]]
-name = "email"
-icon = "fa fa-telegram"
-url = "https://t.me/john"
-before = "and on "
 after = "."
+
 
 
 
