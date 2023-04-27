@@ -1,0 +1,11 @@
+<footer>
+    {{$footerText := string ""}}
+    {{ with .Site.Copyright }}
+    {{$footerText = . | safeHTML}}
+    {{else}}
+    {{$footerText = .Site.Title }}
+    {{end}}
+       
+    <h6> &copy; {{ now.Year }} - {{$footerText}}
+   
+</footer>

@@ -1,6 +1,6 @@
 baseURL = "https://example.com/"
 theme = "salinger"
-title = "Phong Resume"
+title = "Home"
 copyright = 'N/A'
 ignoreErrors = ["error-remote-getjson"]
 
