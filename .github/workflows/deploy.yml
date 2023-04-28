@@ -31,7 +31,7 @@ jobs:
             submodules: 'true'
 
         - name: Build
-          run: cd app/ && hugo
+          run: hugo
 
         - name: Upload files to S3
-          run: aws s3 sync app/public/ s3://vanphongle.com/ --exact-timestamps --delete
+          run: aws s3 sync public/ s3://vanphongle.com/ --exact-timestamps --delete
