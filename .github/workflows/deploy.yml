@@ -29,4 +29,4 @@ jobs:
 
     - name: Deploy to S3
       run: |
-        aws s3 sync public/ s3://<your-bucket-name>/ --acl public-read --follow-symlinks --delete
+        aws s3 sync public/ s3://vanphongle.com/ --acl public-read --follow-symlinks --delete
