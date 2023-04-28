@@ -1,22 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Last projects. 🤖 on Home</title>
-    <link>https://example.com/projects/</link>
-    <description>Recent content in Last projects. 🤖 on Home</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <copyright>N/A</copyright>
-    <lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/projects/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Front Matter</title>
-      <link>https://example.com/front-matter/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://example.com/front-matter/</guid>
-      <description>🔥 read the update wiki on the github wiki section
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Last projects. 🤖 on Home</title><link>https://example.com/projects/</link><description>Recent content in Last projects. 🤖 on Home</description><generator>Hugo -- gohugo.io</generator><copyright>N/A</copyright><lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/projects/index.xml" rel="self" type="application/rss+xml"/><item><title>Front Matter</title><link>https://example.com/front-matter/</link><pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate><guid>https://example.com/front-matter/</guid><description>🔥 read the update wiki on the github wiki section
 Global Config Besides to Hugo Global config there are some more variables that can be used in config.toml.
-Site Params # Optional Footer copyright = &amp;#39;Name&amp;#39; [params] # True if the header must appears also in the homepage (default: True) showHeaderOnHomepage = true # Google Analytics G-Tag (optional) googleAnalytics = &amp;#34;G-XX00000&amp;#34; # True if you want to use Twemoji (optional) twemoji = true # Optional text for 404 text.</description>
-    </item>
-    
-  </channel>
-</rss>
+Site Params # Optional Footer copyright = &amp;#39;Name&amp;#39; [params] # True if the header must appears also in the homepage (default: True) showHeaderOnHomepage = true # Google Analytics G-Tag (optional) googleAnalytics = &amp;#34;G-XX00000&amp;#34; # True if you want to use Twemoji (optional) twemoji = true # Optional text for 404 text.</description></item></channel></rss>

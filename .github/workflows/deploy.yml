@@ -1,37 +1,34 @@
-name: S3 Deploy
+name: Deploy Hugo Site to S3
 
 on:
-  workflow_dispatch:
   push:
-    paths:
-      - 'app/**'
-      - '.github/workflows/deploy.yml'
+    branches:
+      - main  # Replace with the name of your primary branch, if different
+
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: us-east-1
-      BUCKET_NAME: phongresumewebsite
+
     steps:
-        - name: Install hugo
-          run: sudo apt install hugo
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-        - name: Install aws cli
-          id: install-aws-cli
-          uses: unfor19/install-aws-cli-action@v1
-          with:
-            version: 2
-            verbose: false
-            arch: amd64
-            rootdir: ""
-            workdir: "" 
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
 
-        - name: Checkout repository
-          uses: actions/checkout@v3
-          with:
-            submodules: 'true'
+    - name: Build Hugo site
+      run: hugo --minify
 
-        - name: Upload files to S3
-          run: aws s3 sync public/ s3://${{ env.BUCKET_NAME }}/ --acl public-read --follow-symlinks --delete
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1  # Replace with your AWS region
+
+    - name: Deploy to S3
+      run: |
+        aws s3 sync public/ s3://<your-bucket-name>/ --acl public-read --follow-symlinks --delete
