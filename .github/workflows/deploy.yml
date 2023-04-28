@@ -1,37 +1,27 @@
-name: S3 Deploy
-
-on:
-  workflow_dispatch:
-  push:
-    paths:
-      - 'app/**'
-      - '.github/workflows/deploy.yml'
+name: Hugo S3 deployment
+on: push
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: us-east-1
-      BUCKET_NAME: phongresumewebsite
+  deploy:
+    runs-on: ubuntu-18.04
     steps:
-        - name: Install hugo
-          run: sudo apt install hugo
+      - name: Git checkout
+        uses: actions/checkout@v3
 
-        - name: Install aws cli
-          id: install-aws-cli
-          uses: unfor19/install-aws-cli-action@v1
-          with:
-            version: 2
-            verbose: false
-            arch: amd64
-            rootdir: ""
-            workdir: "" 
+      # Hugo build
+      - name: Setup hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.75.1"
+      - name: Build
+        run: hugo --minify
 
-        - name: Checkout repository
-          uses: actions/checkout@v3
-          with:
-            submodules: 'true'
-
-        - name: Upload files to S3
-          run: aws s3 sync public/ s3://${{ env.BUCKET_NAME }}/ --acl public-read --follow-symlinks --delete
+      # Sync to s3
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          SOURCE_DIR: 'public'
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'
