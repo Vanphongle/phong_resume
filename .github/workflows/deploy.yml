@@ -2,8 +2,6 @@ name: Deploy Hugo Site to S3
 
 on:
   push:
-    branches:
-      - main  # Replace with the name of your primary branch, if different
 
 jobs:
   deploy:
