@@ -4,26 +4,35 @@ on:
   push:
     branches:
       - main # Replace with your default branch name, if different
-env:
-  BUCKET_NAME : phongresumewebsite
-  AWS_REGION : us-east-1
-# permission can be added at job level or workflow level    
-permissions:
-      id-token: write   # This is required for requesting the JWT
-      contents: read    # This is required for actions/checkout
+
 jobs:
-  S3PackageUpload:
+  deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
-      - name: Git clone the repository
-        uses: actions/checkout@v3
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::259503945777:role/github-action
-          role-session-name: github-action
-          aws-region: ${{ env.AWS_REGION }}
-      # Upload a file to AWS s3
-      - name:  Copy index.html to s3
-        run: |
-          aws s3 cp ./index.html s3://${{ env.BUCKET_NAME }}/
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+
+    - name: Build
+      run: hugo --minify
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: your-aws-region
+        role-to-assume: arn:aws:iam::123456789012:role/GitHubActionsRole
+        role-duration-seconds: 1200
+        role-session-name: GitHubActions
+        web-identity-token-file: ${{ steps.github-metadata.outputs.token_path }}
+
+    - name: Deploy to S3
+      run: aws s3 sync public/ s3://your-bucket-name/ --acl public-read --follow-symlinks --delete
