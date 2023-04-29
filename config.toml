@@ -8,7 +8,7 @@ ignoreErrors = ["error-remote-getjson"]
 DateFormat = "January 2006"
 
 author = "Phong Le"
-description = "I'm an IT Analyst based i. I like developing and designing random stuffs."
+description = "I'm an IT Analyst. I like developing and designing random stuffs."
 header = "<strong>Hi, I'm Phong. 👋 </strong>"
 keywords = [ "Portfolio", "developer", "coding", "maker"]
 showHeaderOnHomepage = false
