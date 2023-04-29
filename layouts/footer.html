@@ -1,0 +1,13 @@
+<footer>
+    {{$footerText := string ""}}
+    {{ with .Site.Copyright }}
+    {{$footerText = . | safeHTML}}
+    {{else}}
+    {{$footerText = .Site.Title }}
+    {{end}}
+       
+    <h6> &copy; {{ now.Year }} - {{$footerText}} <br>
+    Powered by Hugo.
+         <br>Made on 🌍.</h6>
+   
+</footer>
