@@ -9,8 +9,8 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: sa-east-1
-      BUCKET_NAME: caiogomes.me
+      AWS_DEFAULT_REGION: us-east-1
+      BUCKET_NAME: vanphongle.com
     steps:
         - name: Install hugo
           run: sudo apt install hugo
@@ -35,3 +35,5 @@ jobs:
 
         - name: Upload files to S3
           run: aws s3 sync ./public/ s3://vanphongle.com/ --exact-timestamps --delete
+
+       
