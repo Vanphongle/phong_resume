@@ -1,100 +1,51 @@
 +++
-title = "Front Matter"
+title = "Configuring CloudFront for Static Websites ☁️"
 date = "2019-03-10"
-description = "How to config salinger theme using front matter"
+description = "How to config Cloudfront to serve static website"
 toc = true
 +++
 
 > 🔥 read the update wiki on the github wiki section
 
-## Global Config  
-Besides to [Hugo Global config](https://gohugo.io/content-management/front-matter/) there are some more variables that can be used in config.toml.
 
-### Site Params  
+This guide will help you configure CloudFront to serve your static website content with SSL support 🔒. This can be necessary if you need to secure your website with HTTPS. We will cover the following steps:
 
-```toml
+1. Creating an SSL certificate 📜
+2. Creating a CloudFront distribution 🌏
+3. Updating Route 53 records 🚦
 
-# Optional Footer
-copyright = 'Name'
+## Prerequisites
 
-[params]
+You should have an existing S3 bucket that serves your static website files.
 
-# True if the header must appears also in the homepage (default: True)
-showHeaderOnHomepage = true
+## Step 1: Create an SSL certificate 📜
 
-# Google Analytics G-Tag (optional)
-googleAnalytics = "G-XX00000"
+1. Navigate to the AWS Certificate Manager (ACM) and click on "Request a certificate" ➕.
+2. Select "Request a public certificate" and click "Request a certificate".
+3. Enter your domain name (e.g., example.com) and any subdomains you want to cover (e.g., www.example.com) 🔗. Click "Next" ▶️.
+4. Choose "DNS validation" ✅ and click "Review" 🔍.
+5. Review your settings and click "Confirm and request" ⚡.
+6. Follow the instructions provided by AWS to validate your domain through DNS 🌐.
 
-# True if you want to use Twemoji (optional)
-twemoji = true
+## Step 2: Create a CloudFront distribution 🌏
 
-# Optional text for 404 text.
-text404 = "Some text"
+1. Navigate to the AWS CloudFront console and click on "Create Distribution" ➕.
+2. Under the "Web" section, click "Get Started" 🚀.
+3. For the "Origin Domain Name," select your S3 bucket that serves your static website files 🗄️. If prompted to use the website endpoint, click on it 👍.
+4. Change the "Viewer Protocol Policy" to "Redirect HTTP to HTTPS".
+5. Leave the "Allowed HTTP Methods" as the default value since this is for a static website 🌐.
+6. In the "Alternate Domain Names (CNAMEs)" field, add your domain name (e.g., example.com) and any subdomains you want to cover (e.g., www.example.com) 🔗. If your SSL certificate covers both, you can add both.
+7. Under "SSL Certificate," select "Custom SSL Certificate" and choose the SSL certificate you created in step 1 🔒.
+8. Click "Create Distribution" ✅.
 
-# Font Awesome 6 id. Optional, FA4 will be used without any ID provided.
-fontawesomekitcode = "123456789"
-```
+## Step 3: Update Route 53 records 🚦
 
-### Social links  
+1. Navigate to the AWS Route 53 console.
+2. In the "Hosted zones" section, click on the domain name you want to update 🔗.
+3. Locate the existing A record for your main domain (e.g., example.com) and click "Edit" ✏️.
+4. Change the "Alias" option to "Yes" and select the CloudFront distribution you created in step 2 🌐.
+5. Click "Save Record Set" 💾.
+6. Create a new A record for your subdomain (e.g., www.example.com) and set the "Alias" option to "Yes" 👍. Select the same CloudFront distribution created in step 2 🌐.
+7. Click "Create Record Set" ✅.
 
-Social links can be add in the homepage by writing them directly on config.toml
-
-```toml
-[[params.social]]
-name = "email"
-icon = "fa fa-envelope" # name of FA icon
-url = "https://t.me/example" 
-before = "and on " # text before the icon
-after = "." # text after the icon
-```
-
-### Menu  
-
-The header menu is also configurable:
-
-```toml
-[Menu]
-[[Menu.Main]]
-name = "Projects."
-url = "/projects/"
-weight = 1
-``` 
-
-## Page config  
-
-```markdown
----
-# the title that appears on the single page
-title: "example title"
-
-# optional: if provided appears on the home page instead of the title
-description: "this is and example description longer that the title."
-
-
-date: 2021-03-17T22:00:00Z
-slug: "website-page-cool"
-
-# optional: to display toc on bigger screens (toc on smartphones isn't supported yet)
-toc: true
----
-```
-
-## Taxonomy  
-
-
-E.g.: you want use the categories and tags taxonomies.
-
-In the config file:
-
-```toml
-[taxonomies]
-	tag = "tags"
-	category = "categories"
-```
-
-In each article:
-
-```markdown
-categories: ["cat1"]
-tags: ["tag1", "..."]
-```
+Now, your static website should be served through CloudFront with SSL support 🔒. Your content will be securely delivered over HTTPS, and users will be redirected from HTTP to HTTPS automatically 💫.
