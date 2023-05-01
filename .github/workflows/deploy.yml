@@ -1,7 +1,6 @@
 name: S3 Deploy
 
 on:
-  workflow_dispatch:
   push:
     paths-ignore:
       - '**/*.tf'
