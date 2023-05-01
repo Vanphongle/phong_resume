@@ -1,7 +1,7 @@
 +++
-title = "Configuring CloudFront for Static Websites"
+title = "Configuring CloudFront for Static Web"
 date = "2019-03-10"
-description = "How to config Cloudfront to serve static website"
+description = "test"
 toc = true
 +++
 
