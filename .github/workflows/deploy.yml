@@ -3,8 +3,8 @@ name: S3 Deploy
 on:
   workflow_dispatch:
   push:
-    paths-ignore:
-      - 'terraform/main.yml'
+    ignore:
+      - 'terraform'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
