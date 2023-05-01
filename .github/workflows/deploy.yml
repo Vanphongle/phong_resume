@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     ignore:
-      - 'terraform/**'
+      - '**/*.tf'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
