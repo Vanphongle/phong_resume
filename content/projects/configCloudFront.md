@@ -1,12 +1,9 @@
 +++
-title = "Configuring CloudFront for Static Web"
-date = "2019-03-10"
-description = "test"
+title = "Config CloudFront For Static Web"
+date = "2023-04-30"
+url = "/projects/config-cloudfront-for-static-web"
 toc = true
 +++
-
-> 🔥 read the update wiki on the github wiki section
-
 
 This guide will help you configure CloudFront to serve your static website content with SSL support 🔒. This can be necessary if you need to secure your website with HTTPS. We will cover the following steps:
 
